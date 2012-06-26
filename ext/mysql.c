@@ -20,13 +20,11 @@
 #ifdef HAVE_MYSQL_H
 #include <mysql.h>
 #include <mysql_com.h>
-//#include <violite.h>
 #include <errmsg.h>
 #include <mysqld_error.h>
 #else
 #include <mysql/mysql.h>
 #include <mysql/mysql_com.h>
-//#include <mysql/violite.h>
 #include <mysql/errmsg.h>
 #include <mysql/mysqld_error.h>
 #endif
@@ -46,6 +44,16 @@
 #define GetHandler(obj)		(Check_Type(obj, T_DATA), &(((struct mysql*)DATA_PTR(obj))->handler))
 #define GetMysqlRes(obj)	(Check_Type(obj, T_DATA), ((struct mysql_res*)DATA_PTR(obj))->res)
 #define GetMysqlStmt(obj)	(Check_Type(obj, T_DATA), ((struct mysql_stmt*)DATA_PTR(obj))->stmt)
+
+// <monkeypatch>
+#ifndef vio_blocking
+#define vio_blocking(vio, set_blocking_mode, old_mode) (vio)->vioblocking(vio, set_blocking_mode, old_mode)
+#endif
+
+#ifndef vio_fastsend
+#define vio_fastsend(vio) (vio)->fastsend(vio)
+#endif
+// </monkeypatch>
 
 VALUE cMysql;
 VALUE cMysqlRes;
