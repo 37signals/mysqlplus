@@ -6,7 +6,6 @@ Gem::Specification.new do |s|
   s.email    = "oldmoe@gmail.com"
   s.homepage = "http://github.com/oldmoe/mysqlplus"
   s.description = "Enhanced Ruby MySQL driver"
-  s.has_rdoc = true
   s.authors  = ["Muhammad A. Ali"]
   s.platform = Gem::Platform::RUBY
   s.files    = %w[

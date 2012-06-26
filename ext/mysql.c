@@ -339,6 +339,7 @@ static VALUE async_in_progress_set( VALUE obj, VALUE flag )
 // does this actually really do anything helpful? Not sure.
 static void optimize_for_async( VALUE obj )
 {
+  #ifdef __USE_VIO_BLOCKING
     struct mysql* m = GetMysqlStruct(obj);
     my_bool was_blocking;
     vio_blocking(m->handler.net.vio, 0, &was_blocking);    
@@ -346,6 +347,7 @@ static void optimize_for_async( VALUE obj )
 
     vio_fastsend( m->handler.net.vio );
     async_in_progress_set( obj, Qfalse );
+  #endif
 }
 
 // TODO does nothing currently
