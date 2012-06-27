@@ -1,4 +1,5 @@
-require File.dirname(__FILE__) + '/mysql' # load our version of mysql--note
+require File.expand_path(File.join('..', 'ext', 'mysql'), File.dirname(__FILE__))
+# load our version of mysql--note
 # if someone does a require 'mysql' after a require 'mysqlplus' then their screen will be littered with warnings
 # and the "old" mysql will override the "new" mysqlplus, so be careful.
 

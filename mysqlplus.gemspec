@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name     = "mysqlplus"
-  s.version  = "0.1.1"
-  s.date     = "2009-03-22"
+  s.version  = "0.1.2.1"
+  s.date     = "2012-06-27"
   s.summary  = "Enhanced Ruby MySQL driver"
   s.email    = "oldmoe@gmail.com"
   s.homepage = "http://github.com/oldmoe/mysqlplus"
